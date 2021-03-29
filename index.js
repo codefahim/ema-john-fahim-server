@@ -82,4 +82,4 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 // console.log(process.env.DB_USER)
-app.listen(port)
+app.listen(process.env.PORT || port)
