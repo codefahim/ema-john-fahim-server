@@ -58,10 +58,12 @@ client.connect(err => {
     //create custom api
    app.get('/totalProduct', (req, res)=>{
     // allProducts.find({}).limit(20)
-    allProducts.find({})
-    .toArray((err,documents)=>{
-        res.send(documents)
-    })
+     const search = req.query.search;
+     allProducts
+       .find({ name: { $regex: search } })
+       .toArray((err, documents) => {
+         res.send(documents);
+       });
    })
 
    //find Single item for product details page of client
@@ -79,7 +81,7 @@ client.connect(err => {
 
 //db connection close here
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Hello World!This is fahim');
 })
 // console.log(process.env.DB_USER)
 app.listen(process.env.PORT || port)
